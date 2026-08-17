@@ -24,6 +24,13 @@ elements that no longer exist (arXiv 2606.09090).
 - **URLs in instructions**: fetch only if cheap; otherwise flag ones whose repo/org names no
   longer match reality.
 
+**Never conclude absence from a truncated search.** A "missing" finding (a fact absent
+from a data file, a rule nowhere in config) must come from an unbounded search of the
+whole file, not a `head`-capped or first-N-matches one — a capped grep that shows five
+unrelated hits proves nothing about line 101. Capping output is fine for confirming
+presence; absence claims get the full scan. (Learned in the field: an audit reported a
+pricing family as missing that sat 96 lines below its truncated grep window.)
+
 **False-positive traps:**
 
 - Paths created at runtime (output dirs, per-client folders). Check whether a generator
